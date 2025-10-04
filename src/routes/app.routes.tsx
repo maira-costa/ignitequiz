@@ -1,11 +1,12 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import React from 'react';
 import { Home } from '../screens/Home';
 import { Quiz } from '../screens/Quiz';
 import { Finish } from '../screens/Finish';
 import { History } from '../screens/History';
 
-const { Navigator, Screen } = createNativeStackNavigator();
+const { Navigator, Screen, Group } = createNativeStackNavigator();
 
 export function AppRoutes() {
   return (
@@ -19,17 +20,20 @@ export function AppRoutes() {
         component={Home}
       />
       <Screen
-        name="quiz"
-        component={Quiz}
-      />
-      <Screen
         name="history"
         component={History}
       />
-      <Screen
-        name="finish"
-        component={Finish}
-      />
+      <Group screenOptions={{ gestureEnabled: false }}>
+        <Screen
+          name="quiz"
+          component={Quiz}
+        />
+
+        <Screen
+          name="finish"
+          component={Finish}
+        />
+      </Group>
     </Navigator>
   )
 }
